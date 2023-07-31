@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: fio
-        image: joshuarobinson/fio:3.19
+        image: quay.io/abdulkandathil/fio-s390x:latest
         command: ["fio"]
         args: ["/configs/fio.job", "--eta=never", "--filename_format=$jobnum.$filenum", "--directory=/scratch/"]
         volumeMounts:
@@ -32,9 +32,9 @@ spec:
   - metadata:
       name: fio-data
     spec:
-      storageClassName: pure-block
+      storageClassName: ocs-storagecluster-ceph-rbd
       accessModes:
       - ReadWriteOnce
       resources:
         requests:
-          storage: 4Ti
+          storage: 10Gi
